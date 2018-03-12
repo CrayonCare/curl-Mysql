@@ -82,6 +82,7 @@ class Mysql
         }
     }
 
+    //读取文件内容
     public function leadingIn()
     {
         $file = fopen('Songs.txt', 'r');
@@ -115,13 +116,17 @@ class Mysql
             $Mysql = new Mysql();
             $data = $Mysql->leadingIn();
             $array = array();
+            //拼接sql 语句 ,批量一起插入
             $sql = "INSERT INTO `song_sheet` (`song_no`,`song_name`,`singer_name`,`language`,`film_classification`,`dance_category`,`music_classification`,`epidemic_classification`,`picture_type`,`max_volume`,`song_count`,`backup_information`,`picture`,`retain`,`retain_date`) VALUES";
       foreach ($data as $key => $val) {
                 $array = explode('|', $val);
                 array_shift($array);
                 array_pop($array);
+          //数据字段较多~没有处理,就这样把~
           $sql .= '("' . $array[0] . '",' . '"' .str_replace( '"','',$array[1]) . '",' . '"' . $array[2] . '",' . '"' . $array[3] . '",' . '"' . $array[4] . '",' . '"' . $array[5] . '",' . '"' . $array[6] . '",' . '"' . $array[7] . '",' . '"' . $array[8] . '",' . '"' . $array[9] . '",' . '"' . $array[10] . '",' . '"' . $array[11] . '",' . '"' . $array[12] . '",' . '"' . $array[13] . '",' . '"' . $array[14] . '"),';
       }
+//最后一条会多出一个,符号 所以需要把他切割出来,以免sql报错
     $sql = substr($sql, 0, -1) ;
+//执行sql INSERT INTO 
     $result = $Mysql -> Inser($sql);
 
