@@ -85,7 +85,7 @@ class Mysql
     //读取文件内容
     public function leadingIn()
     {
-        $file = fopen('Songs.txt', 'r');
+        $file = fopen('test.txt', 'r');
         $data = array();
         $i = 0;
         while (!feof($file)) {
