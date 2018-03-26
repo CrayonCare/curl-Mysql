@@ -32,7 +32,7 @@ class down extends Mysql
             if (!in_array($img_ext, $img_exts)) {
                 return false;
             }
-            $filename = 'Songs' . $img_ext;
+            $filename = 'test' . $img_ext;
             if (file_exists('test.txt')) {
                 unlink('test.txt');
             }
