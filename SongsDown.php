@@ -33,8 +33,8 @@ class down extends Mysql
                 return false;
             }
             $filename = 'Songs' . $img_ext;
-            if (file_exists('Songs.txt')) {
-                unlink('Songs.txt');
+            if (file_exists('test.txt')) {
+                unlink('test.txt');
             }
         }
 
